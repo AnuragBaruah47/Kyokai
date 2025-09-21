@@ -1,4 +1,5 @@
 import React from "react";
+import { getRatingShort } from "../utill";
 
 const Card = ({
   description,
@@ -6,37 +7,16 @@ const Card = ({
   titleEnglish,
   titleJapanese,
   animeStatus,
-  rank,
-  genre1,
-  genre2,
-  genre3,
+  rating,
 }) => {
+
   return (
-    <div className="h-[500px] w-[360px] rounded-2xl  border-white bg-white">
-      <div className="h-[300px] w-[360px] rounded-2xl mt-[5px] flex flex-col items-center">
-        <img
-          src={imgUrl}
-          className="h-[300px] w-[350px] rounded-2xl"
-          alt="home"
-        />
+    <div className="h-[340px] w-[230px] relative flex-col rounded-2xl mt-[5px] flex justify-center items-center">
+      <img src={imgUrl} className="h-max w-max rounded-2xl" alt="home" />
+      <div className="text-white hover:border-white hover:bg-[rgba(0,0,0,0.8)] rounded-2xl h-[340px] w-[230px] absolute opacity-0 hover:opacity-[1]  border-2 z-10 text-[30px] font-mono transition-all ease-in-out hover:cursor-pointer font-[800] flex justify-center">
+        <div className="h-[40px] w-[40px] m-[4px] text-[1.2rem] text-black absolute right-0 bg-white rounded-4xl flex justify-center items-center">{getRatingShort(rating)}</div>
+        <div className="absolute bottom-[10px] ">{(titleEnglish)? titleEnglish : "Unknown"}</div>
       </div>
-      <div className="flex ml-[10px] mr-[10px] gap-[17px] mt-[10px]">
-        <div className="h-[30px] w-[100px] text-[16px] font-sans font-[500] border-[1px] flex justify-center items-center rounded-2xl border-black bg-black text-white">
-          {genre1}
-        </div>
-        <div className="h-[30px] w-[100px] text-[16px] font-[500] border-[1px] flex justify-center items-center rounded-2xl border-black bg-black text-white">
-          {genre2}
-        </div>
-        <div className="h-[30px] w-[100px] text-[16px] font-[500] border-[1px] flex justify-center items-center rounded-2xl border-black bg-black text-white">
-          {genre3}
-        </div>
-      </div>
-      <div>
-        {titleEnglish}
-        {titleJapanese}
-      </div>
-      <div>{animeStatus}</div>
-      <div className="h-[100px] w-[360px] overflow-hidden">{description}</div>
     </div>
   );
 };
