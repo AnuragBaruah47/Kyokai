@@ -8,6 +8,7 @@ import {
 import RootLayout from "./Layout/RootLayout";
 import Home from "./Pages/Home";
 import AllAnime from "./Pages/AllAnime";
+import EachAnime from "./Pages/EachAnime";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<RootLayout />} />
         <Route index element={<Home />} />
         <Route path="anime" element={<AllAnime />} />
+        <Route path="anime/:id" element={<EachAnime/>} />
       </Route>
     )
   );
