@@ -8,7 +8,7 @@ import { FaChartBar } from "react-icons/fa";
 const Navbar = () => {
   return (
     <div className="flex justify-center">
-      <nav className="border-[1px] border-black h-[60px] flex gap-[160px] items-center rounded-[5px] w-[700px] fixed top-[40px]  z-20 bg-white p-[20px]">
+      <nav className="hover:border-green-500 border-[2px] border-black h-[60px] flex gap-[160px] items-center rounded-[5px] w-[700px] absolute top-[40px]  z-20 bg-white p-[20px]">
         <div className="flex gap-[20px]">
           <NavLink to="/">
             <button className="flex  hover:text-red-400 Home relative cursor-pointer justify-center items-center text-[20px] font-mono font-[700] gap-[5px]">
