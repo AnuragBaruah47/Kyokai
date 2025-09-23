@@ -6,6 +6,9 @@
   transition: all ease-in-out;
 }
 
+html{
+  overflow-x: hidden;
+}
 
 @keyframes animater {
   10% {
@@ -19,4 +22,10 @@
   }
 }
 
+.active{
+  color: #1A36BD;
+}
 
+.active div{
+  background-color: #1A36BD;
+}
