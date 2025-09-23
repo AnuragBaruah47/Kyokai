@@ -8,6 +8,7 @@ export const useGetAllAnime = (url) => {
   const [response, setResponse] = useState([]);
   const [loading, setloading] = useState(false);
   const [error, setError] = useState("");
+  const [page,setPage]=useState(1)
   useEffect(() => {
     (async () => {
       try {

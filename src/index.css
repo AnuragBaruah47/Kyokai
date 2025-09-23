@@ -16,7 +16,7 @@ html{
     rotate: 0deg;
   }
   100% {
-    border: 5px solid black;
+    border: 5px solid white;
     rotate: 360deg;
     border-radius: 3px;
   }
