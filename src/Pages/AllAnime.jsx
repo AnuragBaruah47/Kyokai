@@ -3,6 +3,7 @@ import Card from "../Components/Card";
 import { NavLink } from "react-router-dom";
 import Loader from "../Components/Loader";
 import axios from "axios";
+import TopCard from "../Components/TopCard";
 
 const AllAnime = () => {
   const [response, setResponse] = useState([]);
@@ -17,8 +18,7 @@ const AllAnime = () => {
     }
   };
 
-    const filteredAnime = filterAnime();
-
+  const filteredAnime = filterAnime();
 
   useEffect(() => {
     (async () => {
@@ -61,8 +61,8 @@ const AllAnime = () => {
 
   return (
     <div className="h-[auto] w-[100vw] bg-[#000000]">
-      <div className="h-auto relative justify-center items-center top-[150px]  flex gap-[20px] w-full">
-        <div className="h-[400px] w-[800px] border-2 border-white">Cards</div>
+      <div className="h-auto relative z-0 justify-center items-center top-[150px]  flex gap-[20px] w-full">
+        <TopCard/>
         <div className="h-[400px] w-[300px] border-2 border-white">Filters</div>
       </div>
       <div className="relative bg-[#000000] top-[200px]">
