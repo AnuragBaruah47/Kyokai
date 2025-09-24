@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 
-export const pageUrl = "https://api.jikan.moe/v4/anime?limit=10&page=10";
 
 export const useGetAllAnime = (url) => {
   const [response, setResponse] = useState([]);

@@ -4,39 +4,31 @@ import axios from "axios";
 import { MdOutlineInfo } from "react-icons/md";
 import { FaRegBookmark } from "react-icons/fa";
 
-const TopCard = () => {
-  const [topAnime, setTopAnime] = useState([]);
-  const [number, setNumber] = useState(0);
-  const numberArray = [0, 1, 2, 3, 4];
+const TopCard = ({ topAnime }) => {
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const top = await axios.get(
-          "https://api.jikan.moe/v4/top/anime?limit=5"
-        );
-        setTopAnime(top.data.data);
-      } catch (err) {
-        console.log(err.message || "Something went wrong");
-      }
-    })();
-  }, []);
+    if (topAnime.length === 0) return;
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % topAnime.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [topAnime.length, 5000]);
 
-
-  
+  if (!topAnime.length) return null;
 
   return (
-    <div className="h-[400px] relative z-0 w-[800px]">
+    <div className="h-[400px] transition-all ease-in-out relative z-0 w-[800px]">
       <div className="h-[400px] w-[800px] z-[20] bg-[rgba(0,0,0,0.8)] absolute flex justify-center items-center"></div>
       <div className="bg-red-700 flex justify-center items-center h-[35px] w-[150px] text-[16px] top-[20px] left-[20px] font-sans font-[900] text-white rounded-[5px] absolute z-[22]">
-        
+        #Rank{topAnime[current]?.rank}
       </div>
       <div className="absolute z-[22] text-4xl top-[100px] font-mono left-[20px] font-[900] text-white">
-        {topAnime[number]?.title}
+        {topAnime[current]?.title}
       </div>
       <div>
         <div className="absolute top-[170px] tracking-wide left-[20px] text-gray-400 z-[22] h-[95px] text-[16px] font-[900] font-serif w-[500px] overflow-clip">
-          {topAnime[number]?.synopsis}
+          {topAnime[current]?.synopsis}
         </div>
       </div>
       <div className="absolute top-[70px]">
@@ -51,7 +43,7 @@ const TopCard = () => {
       </div>
 
       <img
-        src={topAnime[number]?.images?.webp?.image_url}
+        src={topAnime[current]?.images?.webp?.image_url}
         alt="home"
         className="h-[400px] w-[800px] absolute z-0"
       />
