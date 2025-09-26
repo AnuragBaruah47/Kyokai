@@ -6,6 +6,7 @@ import {
   extractMinutesPerEpisode,
   getRatingShort,
   first400Chars,
+  formatToLocaleDate,
 } from "../utill";
 
 const EachAnime = () => {
@@ -53,11 +54,9 @@ const EachAnime = () => {
   }
 
   return (
-    <div
-      className="h-[100vh] flex gap-[30px]
-     bg-[#1a1a1a] 
-            bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1)_0%,transparent_70%)] text-white relative w-[100vw]"
-    >
+
+    <div>
+    <div className="h-[100vh] flex gap-[30px] bg-black text-white top-[150px] relative w-[100vw]">
       <div className="flex ml-[60px] gap-[30px]">
         <div className="h-[270px] w-[180px] border-[1px] border-black">
           <img
@@ -85,13 +84,13 @@ const EachAnime = () => {
                 {response?.episodes}EP
               </div>
               <div className="bg-red-500 rounded-[5px] w-auto pl-[10px] pr-[10px] flex justify-center items-center font-mono font-[900] text-white">
-                {response?.demographics?.map((each) => {
-                    if(each.name){
-                      return each.name
-                    }else{
-                      return "Unknown"
-                    }
-                })}
+                {response?.demographics == []
+                  ? response?.demographics?.map((each) => {
+                      if (each.name) {
+                        return each.name;
+                      }
+                    })
+                  : "unknown"}
               </div>
               <div className="bg-yellow-500 rounded-[5px] w-auto pl-[10px] pr-[10px] flex justify-center items-center font-mono font-[900] text-black">
                 {response?.score}
@@ -132,7 +131,55 @@ const EachAnime = () => {
           </div>
         </div>
       </div>
-      <div className=" w-[350px] h-[550px] left-[100px]">Box</div>
+      <div className="w-[350px] font-mono font-[900]  h-[550px] left-[100px]">
+        <div>Name: {response?.title_japanese}</div>
+        <div>
+          Synonyms:{" "}
+          {response?.title_synonyms?.map((each) => {
+            return each;
+          })}
+        </div>
+        <div>
+          Aired: from {formatToLocaleDate(response?.aired?.from)} to{" "}
+          {formatToLocaleDate(response?.aired?.to)}
+        </div>
+        <div>Premiered: {response?.year}</div>
+        <div>Status: {response?.status}</div>
+        <div>Popularity: #{response?.popularity}</div>
+        <div>Duration: {response?.duration}</div>
+        <div>
+          Genre:
+          {response?.genres?.map((each) => {
+            return each?.name;
+          })}
+        </div>
+        <div>
+          Studio:{" "}
+          {response?.studios?.map((each) => {
+            return each?.name;
+          })}
+        </div>
+        <div>
+          Producers:{" "}
+          {response?.producers?.map((each) => {
+            return each?.name;
+          })}
+        </div>
+        <div>
+          {response?.trailer?.embed_url !== "null" && (
+            <iframe
+              width="340"
+              height="200"
+              src={response?.trailer?.embed_url}
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          )}
+        </div>
+      </div>
+    </div>
     </div>
   );
 };

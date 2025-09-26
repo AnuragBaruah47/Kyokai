@@ -20,7 +20,6 @@ export function getRatingShort(fullRating) {
 export function first400Chars(text) {
   if (typeof text !== "string") return "";
 
-  // If already <= 400 chars, return as is
   if (text.length <= 400) return text;
 
   // Otherwise slice and add ellipsis
@@ -28,8 +27,26 @@ export function first400Chars(text) {
 }
 
 
-export  function extractMinutesPerEpisode(input) {
+export function extractMinutesPerEpisode(input) {
   if (typeof input !== "string") return null;
-  const match = input.match(/\d+/);
-  return match ? Number(match[0]) : null;
+
+  const hourMatch = input.match(/(\d+)\s*(?:h|hr|hour)s?/i);
+  const minMatch  = input.match(/(\d+)\s*(?:m|min|minute)s?/i);
+
+  const hours = hourMatch ? Number(hourMatch[1]) : 0;
+  const minutes = minMatch ? Number(minMatch[1]) : 0;
+
+  if (hours === 0 && minutes === 0) return null;
+
+  return hours * 60 + minutes;
+}
+
+export function formatToLocaleDate(dateString, locale = undefined, options = {}) {
+  if (!dateString) return "";
+
+  const date = new Date(dateString);
+  if (isNaN(date)) return ""; 
+  const defaultOptions = { year: "numeric", month: "short", day: "numeric" };
+
+  return date.toLocaleDateString(locale, { ...defaultOptions, ...options });
 }

@@ -4,9 +4,11 @@ import axios from "axios";
 import { MdOutlineInfo } from "react-icons/md";
 import { FaRegBookmark } from "react-icons/fa";
 import Card from "./Card";
+import { useNavigate } from "react-router-dom";
 
 const TopCard = ({ topAnime }) => {
   const [current, setCurrent] = useState(0);
+  const navigate=useNavigate()
 
   useEffect(() => {
     if (topAnime.length === 0) return;
