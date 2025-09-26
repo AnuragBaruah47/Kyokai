@@ -62,7 +62,7 @@ const AllAnime = () => {
   return (
     <div className="h-[auto] w-[100vw] bg-[#000000]">
       <div className="h-auto relative z-0 justify-center items-center top-[150px]  flex gap-[20px] w-full">
-        <TopCard topAnime={topAnime}/>
+        <TopCard topAnime={topAnime} />
         <div className="h-[400px] w-[300px] border-2 border-white">Filters</div>
       </div>
       <div className="relative bg-[#000000] top-[200px]">
