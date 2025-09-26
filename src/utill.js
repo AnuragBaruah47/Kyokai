@@ -1,4 +1,3 @@
-
 export function getRatingShort(fullRating) {
   switch (fullRating) {
     case "G - All Ages":
@@ -14,6 +13,23 @@ export function getRatingShort(fullRating) {
     case "Rx - Hentai":
       return "Rx";
     default:
-      return ""; 
+      return "";
   }
+}
+
+export function first400Chars(text) {
+  if (typeof text !== "string") return "";
+
+  // If already <= 400 chars, return as is
+  if (text.length <= 400) return text;
+
+  // Otherwise slice and add ellipsis
+  return text.slice(0, 400) + "…";
+}
+
+
+export  function extractMinutesPerEpisode(input) {
+  if (typeof input !== "string") return null;
+  const match = input.match(/\d+/);
+  return match ? Number(match[0]) : null;
 }
