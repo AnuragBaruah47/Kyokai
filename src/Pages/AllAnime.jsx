@@ -26,7 +26,7 @@ const AllAnime = () => {
         setError("");
         setloading(true);
         const res = await axios.get(
-          `https://api.jikan.moe/v4/anime?limit=25&page=${page}`
+          `https://api.jikan.moe/v4/seasons/now?limit=25&page=${page}`
         );
         const top = await axios.get(
           "https://api.jikan.moe/v4/top/anime?limit=5"

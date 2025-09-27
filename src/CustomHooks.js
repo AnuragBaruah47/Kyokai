@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
+const upcoming_url = "https://api.jikan.moe/v4/seasons/upcoming"
 
 export const useGetAllAnime = (url) => {
   const [response, setResponse] = useState([]);

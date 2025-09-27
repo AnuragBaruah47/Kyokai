@@ -4,11 +4,10 @@ import axios from "axios";
 import { MdOutlineInfo } from "react-icons/md";
 import { FaRegBookmark } from "react-icons/fa";
 import Card from "./Card";
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const TopCard = ({ topAnime }) => {
   const [current, setCurrent] = useState(0);
-  const navigate=useNavigate()
 
   useEffect(() => {
     if (topAnime.length === 0) return;
@@ -25,8 +24,10 @@ const TopCard = ({ topAnime }) => {
       <div className="h-[400px] w-[800px] z-[20] bg-[rgba(0,0,0,0.8)] absolute flex justify-center items-center"></div>
       <div className="h-[252px] top-[70px] border-[1px] border-white right-[30px] w-auto absolute z-30">
         <img
-        className="h-[250px] w-auto"
-         src={topAnime[current]?.images?.webp?.large_image_url} alt="home" />
+          className="h-[250px] w-auto"
+          src={topAnime[current]?.images?.webp?.large_image_url}
+          alt="home"
+        />
       </div>
       <div className="bg-red-700 flex justify-center items-center h-[35px] w-[150px] text-[16px] top-[20px] left-[20px] font-sans font-[900] text-white rounded-[5px] absolute z-22">
         #Rank{topAnime[current]?.rank}
@@ -40,10 +41,12 @@ const TopCard = ({ topAnime }) => {
         </div>
       </div>
       <div className="absolute top-[70px]">
-        <button className="flex justify-center border-[1px] border-black items-center absolute z-[22] hover:h-[42px] hover:w-[132px] transition-all ease-in-out bg-[rgba(0,0,0,0.4)] hover:bg-[rgba(0,0,0,0.8)]  rounded-[5px] top-[250px] font-mono left-[20px] h-[40px] w-[130px] hover:cursor-pointer  font-[900] gap-[10px] text-white">
-          <MdOutlineInfo />
-          Info
-        </button>
+        <NavLink to={`/anime/${topAnime[current]?.mal_id}`}>
+          <button className="flex justify-center border-[1px] border-black items-center absolute z-[22] hover:h-[42px] hover:w-[132px] transition-all ease-in-out bg-[rgba(0,0,0,0.4)] hover:bg-[rgba(0,0,0,0.8)]  rounded-[5px] top-[250px] font-mono left-[20px] h-[40px] w-[130px] hover:cursor-pointer  font-[900] gap-[10px] text-white">
+            <MdOutlineInfo />
+            Info
+          </button>
+        </NavLink>
         <button className="flex justify-center border-[1px] border-black items-center absolute z-[22] hover:h-[42px] hover:w-[132px] transition-all ease-in-out bg-[rgba(0,0,0,0.4)] hover:bg-[rgba(0,0,0,0.8)]  rounded-[5px]  top-[250px] font-mono left-[170px] h-[40px] w-[130px] hover:cursor-pointer  font-[900] gap-[10px] text-white">
           <FaRegBookmark />
           Bookmark
