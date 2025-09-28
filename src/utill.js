@@ -1,3 +1,4 @@
+import axios from "axios";
 export function getRatingShort(fullRating) {
   switch (fullRating) {
     case "G - All Ages":
@@ -26,12 +27,11 @@ export function first400Chars(text) {
   return text.slice(0, 400) + "…";
 }
 
-
 export function extractMinutesPerEpisode(input) {
   if (typeof input !== "string") return null;
 
   const hourMatch = input.match(/(\d+)\s*(?:h|hr|hour)s?/i);
-  const minMatch  = input.match(/(\d+)\s*(?:m|min|minute)s?/i);
+  const minMatch = input.match(/(\d+)\s*(?:m|min|minute)s?/i);
 
   const hours = hourMatch ? Number(hourMatch[1]) : 0;
   const minutes = minMatch ? Number(minMatch[1]) : 0;
@@ -41,12 +41,17 @@ export function extractMinutesPerEpisode(input) {
   return hours * 60 + minutes;
 }
 
-export function formatToLocaleDate(dateString, locale = undefined, options = {}) {
+export function formatToLocaleDate(
+  dateString,
+  locale = undefined,
+  options = {}
+) {
   if (!dateString) return "";
 
   const date = new Date(dateString);
-  if (isNaN(date)) return ""; 
+  if (isNaN(date)) return "";
   const defaultOptions = { year: "numeric", month: "short", day: "numeric" };
 
   return date.toLocaleDateString(locale, { ...defaultOptions, ...options });
 }
+

@@ -6,7 +6,7 @@
   transition: all ease-in-out;
 }
 
-html{
+html {
   overflow-x: hidden;
 }
 
@@ -22,10 +22,27 @@ html{
   }
 }
 
-.active{
-  color: #1A36BD;
+.active {
+  color: #1a36bd;
 }
 
-.active div{
-  background-color: #1A36BD;
+.active div {
+  background-color: #1a36bd;
+}
+
+.inpanimate {
+    animation: inpan 1s;
+  transition: all ease-in-out;
+  padding: 10px;
+}
+
+@keyframes inpan {
+  0% {
+    width: 0px;
+    border:0px
+  }
+  100% {
+    width: 650px;
+    border:2px solid black;
+  }
 }

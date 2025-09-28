@@ -91,9 +91,9 @@ const EachAnime = () => {
                 </div>
 
                 {response?.demographics != [] &&
-                  response?.demographics?.map((each) => {
+                  response?.demographics?.map((each,index) => {
                     return (
-                      <div className="bg-red-500 rounded-[5px] w-auto pl-[10px] pr-[10px] flex justify-center items-center font-mono font-[900] text-white">
+                      <div key={index} className="bg-red-500 rounded-[5px] w-auto pl-[10px] pr-[10px] flex justify-center items-center font-mono font-[900] text-white">
                         {each.name}
                       </div>
                     );
@@ -106,7 +106,7 @@ const EachAnime = () => {
                   {extractMinutesPerEpisode(response?.duration)}mins
                 </div>
               </div>
-              <div className="mt-[20px]">
+              <div className="mt-[20px] h-[33px] w-[163px]">
                 <button
                   className="h-[30px] border-[1px] border-white w-[160px] bg-[#676666]  hover:cursor-pointer hover:text-green-300 hover:h-[32px] hover:w-[162px] transition-all ease-in-out  text-white rounded-[5px]
               font-mono mt-[10px] font-[900]"
@@ -115,7 +115,7 @@ const EachAnime = () => {
                 </button>
               </div>
               {more === false ? (
-                <div className="w-[850px] font-mono font-[900] mt-[20px] h-auto">
+                <div className="w-[850px] font-mono font-[900] mt-[30px] h-auto">
                   {first400Chars(response?.synopsis)}...
                   <button
                     className="cursor-pointer ml-[5px]"
@@ -157,8 +157,8 @@ const EachAnime = () => {
           <div className="flex">
             Genre:{" "}
             <div className="flex">
-              {response?.genres?.map((each) => {
-                return <div className="p-[3px]">{each?.name}</div>;
+              {response?.genres?.map((each,index) => {
+                return <div key={index} className="p-[3px]">{each?.name}</div>;
               })}
             </div>
           </div>
@@ -171,15 +171,14 @@ const EachAnime = () => {
           <div className="flex">
             Producers:{" "}
             <div>
-              {response?.producers?.map((each) => {
-                return <div>{each?.name}</div>;
+              {response?.producers?.map((each,index) => {
+                return <div key={index}>{each?.name}</div>;
               })}
             </div>
           </div>
-          <div className="mt-[20px] bg-black">
+          <div className="flex h-[182px] w-[304px] justify-center items-center mt-[20px] border-[1px] border-white p-[10px]">
             {response?.trailer?.embed_url !== "null" && (
               <iframe
-                className="border-[1px] border-white"
                 width="300"
                 height="180"
                 src={`${response?.trailer?.embed_url}?autoplay=0`}
