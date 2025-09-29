@@ -5,22 +5,55 @@ import { PiBookmarkSimple } from "react-icons/pi";
 import { IoSearch } from "react-icons/io5";
 import { FaChartBar } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
+import axios from "axios";
+import Loader from "../Components/Loader";
+import { GoSearch } from "react-icons/go";
+import SearchComponent from "./SearchComponent";
 
 const Navbar = () => {
   const [search, setSearch] = useState(false);
   const [value, setValue] = useState("");
   const [response, setResponse] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [searchLoad, setSearchLoad] = useState(false);
   const setSearchValue = () => {
     if (search === false) {
       setSearch(true);
+      setSearchLoad(false)
     } else if (search === true) {
       setSearch(false);
     }
   };
 
+  if(response){
+    console.log(response);
+  }
+
   const setValueOfInput = (e) => {
     setValue(e.target.value);
   };
+
+  const fetchData = async () => {
+    try {
+      if (value) {
+        setLoading(true);
+        const res = await axios.get(
+          `https://api.jikan.moe/v4/anime?q=${value}`
+        );
+        setResponse(res.data.data);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+      setSearchLoad(true);
+    }
+  };
+
+  if (response) {
+    console.log(response);
+  }
 
   return (
     <div className="flex justify-center">
@@ -62,17 +95,20 @@ const Navbar = () => {
           </div>
         </nav>
       ) : (
-        <div className=" h-[60px] flex rounded-[5px] w-[700px] z-20 bg-white p-[20px] justify-center items-center">
+        <div className=" h-[60px] flex w-[700px] z-20 bg-white p-[20px] justify-center items-center">
           <input
             onChange={setValueOfInput}
             type="text"
-            className="focus:border-white border-[2px] border-black inpanimate h-[50px] text-2xl w-[650px]"
+            className="focus:border-white border-[2px] border-black inpanimate h-[50px] text-[1rem] w-[650px]"
           />
           <IoClose
             className="cursor-pointer text-3xl text-gray-300 hover:text-black relative right-[40px]"
             onClick={setSearchValue}
           />
-          <IoSearch className="cursor-pointer relative right-[10px] text-2xl" />
+          <button onClick={fetchData}>
+            <GoSearch className="font-[900] cursor-pointer relative right-[10px] text-2xl" />
+          </button>
+          {searchLoad && <SearchComponent response={response} />}
         </div>
       )}
     </div>

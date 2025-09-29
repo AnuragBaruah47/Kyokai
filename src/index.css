@@ -46,3 +46,21 @@ html {
     border:2px solid black;
   }
 }
+
+
+.inpanimate2 {
+    animation: inpan 1s;
+  transition: all ease-in-out;
+  padding: 10px;
+}
+
+@keyframes inpan {
+  0% {
+    width: 0px;
+    border:0px
+  }
+  100% {
+    width: 700px;
+    border:2px solid black;
+  }
+}

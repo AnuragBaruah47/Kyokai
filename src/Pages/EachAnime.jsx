@@ -58,6 +58,8 @@ const EachAnime = () => {
   }
 
   if (response) {
+    console.log(param);
+    
   }
 
   return (
@@ -67,7 +69,7 @@ const EachAnime = () => {
           <div className="h-[270px] w-[180px] border-[1px] border-black">
             <img
               className="h-[270px] w-[180px]"
-              src={response.images?.webp?.image_url}
+              src={response?.images?.webp?.image_url}
               alt="home"
             />
           </div>
@@ -75,11 +77,11 @@ const EachAnime = () => {
             <div className="text-[16px] flex font-[900] font-mono">
               {response?.season} | {response?.type} |
               <div className="ml-[10px] text-[rgba(255,255,255,0.5)]">
-                {response?.title_english}
+                {response?.title}
               </div>
             </div>
             <div className="text-4xl font-mono mt-[10px] font-[900]">
-              {response?.title}
+              {response?.title_english}
             </div>
             <div>
               <div className="mt-[20px] gap-[10px] flex">
