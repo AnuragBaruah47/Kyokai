@@ -17,14 +17,19 @@ const EachAnime = () => {
   const [loading, setloading] = useState(false);
   const [error, setError] = useState("");
   const [more, setMore] = useState(false);
-  const param = useParams();
+
+    const { id } = useParams();
+  
+    useEffect(() => {
+      console.log("Param changed:", id);
+    }, [id]);
 
   useEffect(() => {
     (async () => {
       try {
         setloading(true);
         const res = await axios.get(
-          `https://api.jikan.moe/v4/anime/${param.id}`
+          `https://api.jikan.moe/v4/anime/${id}`
         );
         const res2 = await axios.get(
           `https://api.jikan.moe/v4/seasons/upcoming?limit=10`
@@ -39,7 +44,7 @@ const EachAnime = () => {
         setloading(false);
       }
     })();
-  }, []);
+  }, [id]);
 
   const setValueOfMore = () => {
     if (more === false) {
@@ -57,10 +62,6 @@ const EachAnime = () => {
     );
   }
 
-  if (response) {
-    console.log(param);
-    
-  }
 
   return (
     <div>
@@ -140,7 +141,7 @@ const EachAnime = () => {
             </div>
           </div>
         </div>
-        <div className="h-auto w-[350px] mr-[30px] text-[16px] font-mono font-[900] left-[100px]">
+        <div className="h-auto w-[350px] mr-[30px] text-[16px] font-mono left-[100px]">
           <div>Name: {response?.title_japanese}</div>
           <div>
             Synonyms:{" "}
@@ -148,7 +149,7 @@ const EachAnime = () => {
               return each;
             })}
           </div>
-          <div>
+          <div className="tracking-tighter">
             Aired: from {formatToLocaleDate(response?.aired?.from)} to{" "}
             {formatToLocaleDate(response?.aired?.to)}
           </div>
@@ -158,9 +159,9 @@ const EachAnime = () => {
           <div>Duration: {response?.duration}</div>
           <div className="flex">
             Genre:{" "}
-            <div className="flex">
+            <div className="flex text-[14px]">
               {response?.genres?.map((each,index) => {
-                return <div key={index} className="p-[3px]">{each?.name}</div>;
+                return <div key={index} className="p-[1px]">{each?.name}</div>;
               })}
             </div>
           </div>

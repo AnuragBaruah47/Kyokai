@@ -13,6 +13,7 @@ import EachAnime from "./Pages/EachAnime";
 import Recommendation from "./Pages/Recommendation";
 import Bookmarks from "./Pages/Bookmarks";
 import Error404 from "./Pages/Error404";
+import SearchPage from "./Pages/SearchPage";
 
 function App() {
   const router = createBrowserRouter(
@@ -23,6 +24,7 @@ function App() {
         <Route path="anime/:id" element={<EachAnime />} />
         <Route path="/recommendation" element={<Recommendation/>} />
         <Route path="/bookmarks" element={<Bookmarks/>} />
+        <Route path="/searchpage" element={<SearchPage/>} />
         <Route path="*" element={<Error404/>}/>
       </Route>
     )

@@ -4,13 +4,23 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 
 const SearchComponent = ({ response }) => {
   if (!response || response.length === 0) return null;
-  
+
+  const {id} = useParams()
+  useEffect(()=>{
+   console.log("id");
+    
+  },[id])
+
+
+
 
   return (
-    <div className="w-[700px] absolute top-[61px] z-[100] bg-black border border-white">
+    <div className="w-[701px] absolute right-[410px] top-[61px] z-[100] bg-black">
       {response.slice(0, 3).map((anime, index) => (
         <Link key={index} to={`/anime/${anime?.mal_id}`}>
-          <div className="bg-white flex items-center border border-gray-600 h-[150px] w-full hover:bg-gray-100">
+          <div
+            className="bg-white flex items-center border border-gray-600 h-[150px] w-full hover:bg-gray-100"
+          >
             <img
               src={anime?.images?.webp?.image_url}
               className="ml-[30px] h-[130px] w-[90px]"
@@ -33,10 +43,8 @@ const SearchComponent = ({ response }) => {
           </div>
         </Link>
       ))}
-
-      {/* If you want "View All Results" to go to a search page */}
       <Link
-        to={`/search?q=${response[0]?.title_english || ""}`}
+        to={"/searchpage"}
         className="text-white flex items-center justify-center w-full text-[20px] font-[900] font-sans hover:cursor-pointer hover:text-green-500 h-[50px]"
       >
         View All Results

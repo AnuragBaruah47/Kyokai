@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoHomeOutline } from "react-icons/io5";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { PiBookmarkSimple } from "react-icons/pi";
 import { IoSearch } from "react-icons/io5";
 import { FaChartBar } from "react-icons/fa";
@@ -16,16 +16,25 @@ const Navbar = () => {
   const [response, setResponse] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchLoad, setSearchLoad] = useState(false);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    console.log("id changed");
+    setSearchLoad(false);
+    setValue("");
+  }, [id]);
+
   const setSearchValue = () => {
     if (search === false) {
       setSearch(true);
-      setSearchLoad(false)
+      setSearchLoad(false);
     } else if (search === true) {
       setSearch(false);
     }
   };
 
-  if(response){
+  if (response) {
     console.log(response);
   }
 
@@ -108,7 +117,7 @@ const Navbar = () => {
           <button onClick={fetchData}>
             <GoSearch className="font-[900] cursor-pointer relative right-[10px] text-2xl" />
           </button>
-          {searchLoad && <SearchComponent response={response} />}
+          <div onClick={setSearchValue}>{searchLoad && <SearchComponent response={response} />}</div>
         </div>
       )}
     </div>
