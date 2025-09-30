@@ -85,7 +85,7 @@ const AllAnime = () => {
           </div>
         </div>
         <div className="flex h-[50px] gap-[30px] justify-center mt-[20px]">
-          {page > 0 && (
+          {page > 1 && (
             <button
               className="border-[1px] border-white h-[30px] rounded-[2px] font-sans font-[700] w-[100px] bg-green-500"
               onClick={decreasePage}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { formatToLocaleDate, getRatingShort } from "../utill";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
-const SearchComponent = ({ response }) => {
+const SearchComponent = ({ response,value }) => {
   if (!response || response.length === 0) return null;
 
   const {id} = useParams()
@@ -44,7 +44,7 @@ const SearchComponent = ({ response }) => {
         </Link>
       ))}
       <Link
-        to={"/searchpage"}
+        to={`/searchpage?keyword=${value}`}
         className="text-white flex items-center justify-center w-full text-[20px] font-[900] font-sans hover:cursor-pointer hover:text-green-500 h-[50px]"
       >
         View All Results
