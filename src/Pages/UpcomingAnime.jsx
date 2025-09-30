@@ -1,29 +1,30 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import React from "react";
+import { useEffect, useState } from "react";
 import Loader from "../Components/Loader";
+import axios from "axios";
 import { NavLink } from "react-router-dom";
 import Card from "../Components/Card";
 
-const SearchPage = () => {
-  const [searchParams] = useSearchParams();
+const UpcomingAnime = () => {
   const [response, setResponse] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const keyword = searchParams.get("keyword");
-  const [page,setPage] = useState(1);
+  const [loading, setloading] = useState(false);
+  const [error, setError] = useState("");
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
     (async () => {
       try {
-        setLoading(true);
+        setError("");
+        setloading(true);
         const res = await axios.get(
-          `https://api.jikan.moe/v4/anime?q=${keyword}&page=${page}`
+          `https://api.jikan.moe/v4/seasons/upcoming?page=${page}&limit=25`
         );
         setResponse(res.data.data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
+        setloading(false);
+      } catch (err) {
+        setError(err.message || "Something went wrong");
       } finally {
-        setLoading(false);
+        setloading(false);
       }
     })();
   }, [page]);
@@ -88,4 +89,4 @@ const SearchPage = () => {
   );
 };
 
-export default SearchPage;
+export default UpcomingAnime;

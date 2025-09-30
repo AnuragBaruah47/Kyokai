@@ -10,11 +10,10 @@ import RootLayout from "./Layout/RootLayout";
 import Home from "./Pages/Home";
 import AllAnime from "./Pages/AllAnime";
 import EachAnime from "./Pages/EachAnime";
-import Recommendation from "./Pages/Recommendation";
 import Bookmarks from "./Pages/Bookmarks";
 import Error404 from "./Pages/Error404";
 import SearchPage from "./Pages/SearchPage";
-
+import UpcomingAnime from "./Pages/UpcomingAnime";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -22,7 +21,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="anime" element={<AllAnime />} />
         <Route path="anime/:id" element={<EachAnime />} />
-        <Route path="/recommendation" element={<Recommendation/>} />
+        <Route path="/upcoming" element={<UpcomingAnime/>} />
         <Route path="/bookmarks" element={<Bookmarks/>} />
         <Route path="/searchpage" element={<SearchPage/>} />
         <Route path="*" element={<Error404/>}/>

@@ -26,7 +26,7 @@ const Card = ({
           {titleEnglish ? titleEnglish : "Unknown"}
         </div>
         <div className=" p-[5px] bg-orange-700 top-[5px] text-[20px] font-mono font-[700]  rounded-[5px] absolute left-[10px]">
-          {episodes > 1 ? `${episodes}E` : "Movie"}
+          {episodes > 0 ? `${episodes}E` : "Movie"}
         </div>
       </div>
     </div>

@@ -9,7 +9,6 @@ import {
   formatToLocaleDate,
 } from "../utill";
 
-import UpcomingAnime from "../Components/UpcomingAnime";
 
 const EachAnime = () => {
   const [response, setResponse] = useState([]);
@@ -194,7 +193,6 @@ const EachAnime = () => {
         </div>
       </div>
       <div>
-        <UpcomingAnime upcoming={upcoming} />
       </div>
     </div>
   );

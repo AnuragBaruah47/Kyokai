@@ -70,7 +70,7 @@ const Navbar = () => {
   return (
     <div className="flex justify-center">
       {search === false ? (
-        <nav className="border-[2px] border-black h-[60px] flex gap-[160px] items-center rounded-[5px] w-[700px] z-20 bg-white p-[20px]">
+        <nav className="border-[2px] border-black h-[60px] flex gap-[210px] items-center rounded-[5px] w-[700px] z-20 bg-white p-[20px]">
           <div className="flex gap-[20px]">
             <NavLink to="/">
               <button className="flex  hover:text-red-400 Home relative cursor-pointer justify-center items-center text-[20px] font-mono font-[700] gap-[5px]">
@@ -89,10 +89,10 @@ const Navbar = () => {
           </div>
 
           <div className="flex h-auto gap-[20px] w-auto">
-            <NavLink to="/recommendation">
+            <NavLink to="/upcoming">
               <button className="flex hover:text-red-400 relative cursor-pointer justify-center items-center text-[20px] font-mono font-[700] gap-[5px]">
                 <FaChartBar className="h-[20px] w-[20px]" />
-                Recommendation
+                Upcoming
               </button>
               <div className="relative bottom-[-14px] h-[3px] w-auto "></div>
             </NavLink>
