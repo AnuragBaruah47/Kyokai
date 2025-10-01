@@ -15,7 +15,7 @@ const SearchComponent = ({ response,value }) => {
 
 
   return (
-    <div className="w-[701px] absolute right-[410px] top-[61px] z-[100] bg-black">
+    <div className="w-[701px] z-[100] bg-black">
       {response.slice(0, 3).map((anime, index) => (
         <Link key={index} to={`/anime/${anime?.mal_id}`}>
           <div

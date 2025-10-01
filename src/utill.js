@@ -54,4 +54,3 @@ export function formatToLocaleDate(
 
   return date.toLocaleDateString(locale, { ...defaultOptions, ...options });
 }
-

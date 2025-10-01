@@ -10,7 +10,6 @@ import Loader from "../Components/Loader";
 import { GoSearch } from "react-icons/go";
 import SearchComponent from "./SearchComponent";
 
-
 const Navbar = () => {
   const [search, setSearch] = useState(false);
   const [value, setValue] = useState("");
@@ -31,6 +30,7 @@ const Navbar = () => {
       setSearchLoad(false);
     } else if (search === true) {
       setSearch(false);
+      setSearchLoad(true);
     }
   };
 
@@ -40,9 +40,8 @@ const Navbar = () => {
 
   const setValueOfInput = (e) => {
     setValue(e.target.value);
-    if(value !== ""){
+    if (value !== "") {
     }
-
   };
 
   const fetchData = async () => {
@@ -58,8 +57,8 @@ const Navbar = () => {
     } catch (error) {
       console.log(error);
     } finally {
-      setLoading(false);
       setSearchLoad(true);
+      setLoading(false);
     }
   };
 
@@ -118,9 +117,15 @@ const Navbar = () => {
             onClick={setSearchValue}
           />
           <button onClick={fetchData}>
-            <GoSearch className="font-[900] cursor-pointer relative right-[10px] text-2xl" />
+            <GoSearch className="font-[900] hover:text-green-600 cursor-pointer relative right-[10px] text-2xl" />
           </button>
-          <div onClick={setSearchValue}>{searchLoad && <SearchComponent response={response} value={value}/>}</div>
+          <div onClick={setSearchValue}>
+            {searchLoad && (
+              <div className="w-full flex justify-center absolute top-[61px] right-[0px]">
+                <SearchComponent response={response} value={value} />
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>
