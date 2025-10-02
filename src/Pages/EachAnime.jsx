@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import Loader from "../Components/Loader";
 
 import {
@@ -39,7 +39,7 @@ const EachAnime = () => {
           `https://api.jikan.moe/v4/anime/${id}/characters`
         );
         const res4 = await axios.get(
-          `https://api.jikan.moe/v4/anime/${id}/reviews`
+          `https://api.jikan.moe/v4/anime/${id}/reviews?preliminary=true`
         );
         setResponse(res.data.data);
         setUpcoming(res2.data.data);
@@ -258,9 +258,11 @@ const EachAnime = () => {
               <h1 className="flex flex-col items-center justify-center text-4xl font-mono text-white">
                 What Fans Are Saying
                 <div>
+                  <NavLink to={`/reviews/${id}`}>
                   <button className="text-[16px] cursor-pointer hover:text-green-600 font-[900]">
                     View More {">"}
                   </button>
+                  </NavLink>
                 </div>
               </h1>
 
@@ -268,13 +270,13 @@ const EachAnime = () => {
                 <div className="mt-[30px] gap-[20px] grid grid-cols-[repeat(3,450px)] bg-black">
                   {reviews.map((each, index) => {
                     return (
-                      <div>
+                     
                         <TestimonialCard
                           response={each.review}
                           score={each.score}
                           key={index}
                         />
-                      </div>
+                    
                     );
                   })}
                 </div>

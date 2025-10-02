@@ -63,3 +63,12 @@ export function first300Chars(text) {
   // Otherwise slice and add ellipsis
   return text.slice(0, 300) + "…";
 }
+
+export function first1800Chars(text) {
+  if (typeof text !== "string") return "";
+
+  if (text.length <= 1600) return text;
+
+  // Otherwise slice and add ellipsis
+  return text.slice(0, 1600) + "…";
+}
