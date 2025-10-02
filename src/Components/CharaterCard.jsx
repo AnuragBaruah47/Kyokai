@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { applyFontSizeClass } from "../utill";
 import { useParams } from "react-router-dom";
 
 const CharaterCard = ({name,imgUrl,role}) => {

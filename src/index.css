@@ -31,7 +31,7 @@ html {
 }
 
 .inpanimate {
-    animation: inpan 1s;
+  animation: inpan 1s;
   transition: all ease-in-out;
   padding: 10px;
 }
@@ -39,17 +39,16 @@ html {
 @keyframes inpan {
   0% {
     width: 0px;
-    border:0px
+    border: 0px;
   }
   100% {
     width: 650px;
-    border:2px solid black;
+    border: 2px solid black;
   }
 }
 
-
 .inpanimate2 {
-    animation: inpan 1s;
+  animation: inpan 1s;
   transition: all ease-in-out;
   padding: 10px;
 }
@@ -57,14 +56,13 @@ html {
 @keyframes inpan {
   0% {
     width: 0px;
-    border:0px
+    border: 0px;
   }
   100% {
     width: 700px;
-    border:2px solid black;
+    border: 2px solid black;
   }
 }
-
 
 .font-size-normal {
   font-size: 25px;
@@ -76,4 +74,26 @@ html {
 
 .font-size-xsmall {
   font-size: 20px;
+}
+
+.searchLoad {
+  font-size: 5rem;
+    color:azure;
+}
+
+.searchIcon {
+  animation: animateS 1s infinite;
+}
+
+@keyframes animateS {
+  0% {
+    opacity: 0;
+    font-size: 1rem;
+    transform: rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    font-size: 5rem;
+    transform: rotate(360deg);
+  }
 }

@@ -9,6 +9,7 @@ import axios from "axios";
 import Loader from "../Components/Loader";
 import { GoSearch } from "react-icons/go";
 import SearchComponent from "./SearchComponent";
+import SearchLoader from "./SearchLoader";
 
 const Navbar = () => {
   const [search, setSearch] = useState(false);
@@ -40,8 +41,6 @@ const Navbar = () => {
 
   const setValueOfInput = (e) => {
     setValue(e.target.value);
-    if (value !== "") {
-    }
   };
 
   const fetchData = async () => {
@@ -59,11 +58,16 @@ const Navbar = () => {
     } finally {
       setSearchLoad(true);
       setLoading(false);
+      setValue("")
     }
   };
 
   if (response) {
     console.log(response);
+  }
+
+  if (loading){
+    return <div><SearchLoader/></div>
   }
 
   return (

@@ -145,9 +145,7 @@ const EachAnime = () => {
                 </div>
               )}
               {response?.duration == "Unknown" ? (
-                <div className="bg-blue-500 rounded-[5px] px-[10px] flex items-center font-mono font-[900] text-white">
-                  "Unknown"
-                </div>
+                <div></div>
               ) : (
                 <div className="bg-blue-500 rounded-[5px] px-[10px] flex items-center font-mono font-[900] text-white">
                   {`${extractMinutesPerEpisode(response.duration)}mins`}
