@@ -54,3 +54,12 @@ export function formatToLocaleDate(
 
   return date.toLocaleDateString(locale, { ...defaultOptions, ...options });
 }
+
+export function first300Chars(text) {
+  if (typeof text !== "string") return "";
+
+  if (text.length <= 300) return text;
+
+  // Otherwise slice and add ellipsis
+  return text.slice(0, 300) + "…";
+}

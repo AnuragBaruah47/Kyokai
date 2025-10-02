@@ -64,3 +64,16 @@ html {
     border:2px solid black;
   }
 }
+
+
+.font-size-normal {
+  font-size: 25px;
+}
+
+.font-size-small {
+  font-size: 22px;
+}
+
+.font-size-xsmall {
+  font-size: 20px;
+}

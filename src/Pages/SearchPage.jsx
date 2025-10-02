@@ -10,7 +10,8 @@ const SearchPage = () => {
   const [response, setResponse] = useState([]);
   const [loading, setLoading] = useState(false);
   const keyword = searchParams.get("keyword");
-  const [page,setPage] = useState(1);
+  const [page, setPage] = useState(1);
+  const [nextPageValue, setNextPagevalue] = useState(true);
   useEffect(() => {
     (async () => {
       try {
@@ -19,6 +20,7 @@ const SearchPage = () => {
           `https://api.jikan.moe/v4/anime?q=${keyword}&page=${page}`
         );
         setResponse(res.data.data);
+        setNextPagevalue(res.data.pagination.has_next_page);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -29,7 +31,9 @@ const SearchPage = () => {
   }, [page]);
 
   const addPage = () => {
-    setPage(page + 1);
+    if (nextPageValue == true) {
+      setPage(page + 1);
+    }
   };
 
   const decreasePage = () => {
@@ -51,7 +55,7 @@ const SearchPage = () => {
       <div className="relative bg-[#000000] top-[150px]">
         <div className="flex justify-center items-center">
           <div className=" gap-[10px] grid grid-rows-[repeat(5,340px)] grid-cols-[repeat(5,230px)]">
-            {response.map((a, index) => {
+            {response?.map((a, index) => {
               return (
                 <NavLink key={index} to={`/anime/${a?.mal_id}`}>
                   <Card
@@ -76,12 +80,14 @@ const SearchPage = () => {
               Previous
             </button>
           )}
-          <button
-            onClick={addPage}
-            className="border-[1px] border-white hover:cursor-pointer h-[30px] rounded-[2px] font-sans font-[700] w-[100px] bg-green-500"
-          >
-            Next
-          </button>
+          {nextPageValue && (
+            <button
+              onClick={addPage}
+              className="border-[1px] border-white hover:cursor-pointer h-[30px] rounded-[2px] font-sans font-[700] w-[100px] bg-green-500"
+            >
+              Next
+            </button>
+          )}
         </div>
       </div>
     </div>
