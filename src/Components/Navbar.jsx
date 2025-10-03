@@ -21,7 +21,6 @@ const Navbar = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    console.log("id changed");
     setSearchLoad(false);
   }, [id]);
 
@@ -35,9 +34,7 @@ const Navbar = () => {
     }
   };
 
-  if (response) {
-    console.log(response);
-  }
+
 
   const setValueOfInput = (e) => {
     setValue(e.target.value);
@@ -62,9 +59,6 @@ const Navbar = () => {
     }
   };
 
-  if (response) {
-    console.log(response);
-  }
 
   if (loading){
     return <div><SearchLoader/></div>

@@ -12,7 +12,6 @@ const Reviews = () => {
   const [nextPageValue, setNextPagevalue] = useState(true);
 
   const { id } = useParams();
-  console.log(id);
 
   useEffect(() => {
     (async () => {
@@ -47,9 +46,6 @@ const Reviews = () => {
       setPage(page - 1);
     }
   };
-  if (response) {
-    console.log(response[0]);
-  }
 
   if (loading) {
     return <Loader />;

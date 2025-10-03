@@ -8,7 +8,7 @@ const ReviewCard = ({ response }) => {
 
   const setValueOfMore = () => setMore((prev) => !prev);
 
-  console.log(response);
+
 
   return (
     <div className="bg-black">

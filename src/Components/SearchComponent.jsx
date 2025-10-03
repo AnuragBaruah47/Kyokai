@@ -7,7 +7,6 @@ const SearchComponent = ({ response,value }) => {
 
   const {id} = useParams()
   useEffect(()=>{
-   console.log("id");
     
   },[id])
 

@@ -61,11 +61,9 @@ const EachAnime = () => {
     }
   };
   const mainCharacter = returnMaiChar();
-  console.log(mainCharacter);
 
   if (reviews) {
     reviews.map((each) => {
-      console.log(each.score);
     });
   }
 
@@ -234,9 +232,12 @@ const EachAnime = () => {
           <h1 className="flex flex-col items-center justify-center text-4xl font-mono text-white">
             Faces of the Story
             <div>
+              <NavLink to={`/viewallchar/${id}`}>
               <button className="text-[16px] cursor-pointer hover:text-green-600 font-[900]">
                 View More {">"}
               </button>
+              </NavLink>
+
             </div>
           </h1>
           <div className="flex mt-[20px] mb-5 w-full justify-center">

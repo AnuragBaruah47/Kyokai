@@ -15,6 +15,7 @@ import Error404 from "./Pages/Error404";
 import SearchPage from "./Pages/SearchPage";
 import UpcomingAnime from "./Pages/UpcomingAnime";
 import Reviews from "./Pages/Reviews";
+import ViewAllCharacter from "./Pages/ViewAllCharacter";
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -26,6 +27,7 @@ function App() {
         <Route path="bookmarks" element={<Bookmarks/>} />
         <Route path="searchpage" element={<SearchPage/>} />
         <Route path="reviews/:id" element={<Reviews/>} />
+        <Route path="viewallchar/:id" element={<ViewAllCharacter/>} />
         <Route path="*" element={<Error404/>}/>
       </Route>
     )

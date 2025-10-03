@@ -51,9 +51,6 @@ const AllAnime = () => {
     }
   };
 
-  if (topAnime) {
-    console.log(topAnime);
-  }
 
   if (loading) {
     return <Loader />;
