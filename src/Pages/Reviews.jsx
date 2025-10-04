@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "../Components/Loader";
 import ReviewCard from "../Components/ReviewCard";
+import ErrorPage from "./ErrorPage";
 
 const Reviews = () => {
   const [response, setResponse] = useState([]);
@@ -46,6 +47,10 @@ const Reviews = () => {
       setPage(page - 1);
     }
   };
+
+  if(error){
+    return <div><ErrorPage/></div>
+  }
 
   if (loading) {
     return <Loader />;

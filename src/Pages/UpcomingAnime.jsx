@@ -4,6 +4,7 @@ import Loader from "../Components/Loader";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import Card from "../Components/Card";
+import ErrorPage from "./ErrorPage";
 
 const UpcomingAnime = () => {
   const [response, setResponse] = useState([]);
@@ -28,6 +29,10 @@ const UpcomingAnime = () => {
       }
     })();
   }, [page]);
+
+  if(error){
+    return <div><ErrorPage/></div>
+  }
 
   const addPage = () => {
     setPage(page + 1);

@@ -11,6 +11,7 @@ import {
 } from "../utill";
 import CharaterCard from "../Components/CharaterCard";
 import TestimonialCard from "../Components/TestimonialCard";
+import ErrorPage from "./ErrorPage";
 
 const EachAnime = () => {
   const [response, setResponse] = useState(null);
@@ -53,6 +54,10 @@ const EachAnime = () => {
     })();
   }, [id]);
 
+  if(error){
+    return <div><ErrorPage/></div>
+  }
+
   const setValueOfMore = () => setMore((prev) => !prev);
 
   const returnMaiChar = () => {
@@ -84,7 +89,7 @@ const EachAnime = () => {
   }
 
   return (
-    <div className="h-[78.4vh] bg-black gap-[150px] text-white top-[150px] relative w-[100vw]">
+    <div className="h-[545px] bg-black gap-[150px] text-white top-[150px] relative w-[100vw]">
       <div className="flex gap-[150px]">
         <div className="flex w-auto ml-[60px] gap-[30px]">
           {response?.images?.webp?.image_url && (

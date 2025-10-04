@@ -4,9 +4,11 @@ import { useSearchParams } from "react-router-dom";
 import Loader from "../Components/Loader";
 import { NavLink } from "react-router-dom";
 import Card from "../Components/Card";
+import ErrorPage from "./ErrorPage";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
+  const [error,setError]=useState("")
   const [response, setResponse] = useState([]);
   const [loading, setLoading] = useState(false);
   const keyword = searchParams.get("keyword");
@@ -23,12 +25,16 @@ const SearchPage = () => {
         setNextPagevalue(res.data.pagination.has_next_page);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+       setError(error);
       } finally {
         setLoading(false);
       }
     })();
   }, [page]);
+
+  if(error){
+    return <div><ErrorPage/></div>
+  }
 
   const addPage = () => {
     if (nextPageValue == true) {

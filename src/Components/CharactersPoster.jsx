@@ -1,9 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 
-const CharactersPoster = ({ img, name, role }) => {
+const CharactersPoster = ({ img, name, role, Mainvalue }) => {
+
+  
+
+
+
   return (
-    <Link>
+    <NavLink to={`/character?keyword=${Mainvalue}`}>
       <div>
         <div className="flex flex-col h-[350px] border-[2px] border-white bg-white w-[230px] hover:cursor-pointer">
           <img src={img} alt="home" className="h-[300px] w-[230px]" />
@@ -17,7 +22,7 @@ const CharactersPoster = ({ img, name, role }) => {
           </div>
         </div>
       </div>
-    </Link>
+    </NavLink>
   );
 };
 

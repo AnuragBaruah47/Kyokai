@@ -55,7 +55,6 @@ const Navbar = () => {
     } finally {
       setSearchLoad(true);
       setLoading(false);
-      setValue("")
     }
   };
 
