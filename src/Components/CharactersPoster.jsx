@@ -3,10 +3,6 @@ import { Link, NavLink } from "react-router-dom";
 
 const CharactersPoster = ({ img, name, role, Mainvalue }) => {
 
-  
-
-
-
   return (
     <NavLink to={`/character?keyword=${Mainvalue}`}>
       <div>

@@ -54,8 +54,12 @@ const EachAnime = () => {
     })();
   }, [id]);
 
-  if(error){
-    return <div><ErrorPage/></div>
+  if (error) {
+    return (
+      <div>
+        <ErrorPage />
+      </div>
+    );
   }
 
   const setValueOfMore = () => setMore((prev) => !prev);
@@ -68,8 +72,7 @@ const EachAnime = () => {
   const mainCharacter = returnMaiChar();
 
   if (reviews) {
-    reviews.map((each) => {
-    });
+    reviews.map((each) => {});
   }
 
   if (loading) {
@@ -238,15 +241,15 @@ const EachAnime = () => {
             Faces of the Story
             <div>
               <NavLink to={`/viewallchar/${id}`}>
-              <button className="text-[16px] cursor-pointer hover:text-green-600 font-[900]">
-                View More {">"}
-              </button>
+                <button className="text-[16px] cursor-pointer hover:text-green-600 font-[900]">
+                  View More {">"}
+                </button>
               </NavLink>
-
             </div>
           </h1>
           <div className="flex mt-[20px] mb-5 w-full justify-center">
             <div className="grid grid-cols-[repeat(3,410px)] gap-[10px]">
+
               {mainCharacter.map((each, index) => {
                 return (
                   <CharaterCard
@@ -254,9 +257,11 @@ const EachAnime = () => {
                     name={each?.character?.name}
                     imgUrl={each?.character.images?.webp?.image_url}
                     role={each?.role}
+                    malId={each?.character?.mal_id}
                   />
                 );
               })}
+
             </div>
           </div>
           {reviews?.length > 0 ? (
@@ -265,9 +270,9 @@ const EachAnime = () => {
                 What Fans Are Saying
                 <div>
                   <NavLink to={`/reviews/${id}`}>
-                  <button className="text-[16px] cursor-pointer hover:text-green-600 font-[900]">
-                    View More {">"}
-                  </button>
+                    <button className="text-[16px] cursor-pointer hover:text-green-600 font-[900]">
+                      View More {">"}
+                    </button>
                   </NavLink>
                 </div>
               </h1>
@@ -276,13 +281,11 @@ const EachAnime = () => {
                 <div className="mt-[30px] gap-[20px] grid grid-cols-[repeat(3,450px)] bg-black">
                   {reviews.map((each, index) => {
                     return (
-                     
-                        <TestimonialCard
-                          response={each.review}
-                          score={each.score}
-                          key={index}
-                        />
-                    
+                      <TestimonialCard
+                        response={each.review}
+                        score={each.score}
+                        key={index}
+                      />
                     );
                   })}
                 </div>
