@@ -42,7 +42,7 @@ const TopCard = ({ topAnime }) => {
       </div>
       <div className="absolute top-[70px]">
         <NavLink to={`/anime/${topAnime[current]?.mal_id}`}>
-          <button className="flex justify-center border-[1px] border-black items-center absolute z-[22] hover:text-green-500 hover:w-[132px] transition-all ease-in-out bg-[rgba(0,0,0,0.4)] hover:bg-[rgba(0,0,0,0.8)]  rounded-[5px]  top-[250px] font-mono left-[170px] h-[40px] w-[130px] hover:cursor-pointer  font-[900] gap-[10px] text-white">
+          <button className="flex justify-center border-[1px] border-black items-center absolute z-[22] hover:text-green-500 hover:w-[132px] transition-all ease-in-out bg-[rgba(0,0,0,0.4)] hover:bg-[rgba(0,0,0,0.8)]  rounded-[5px]  top-[250px] font-mono left-[17px] h-[40px] w-[130px] hover:cursor-pointer  font-[900] gap-[10px] text-white">
             <MdOutlineInfo />
             Info
           </button>

@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import axios from "axios";
 import Loader from "../Components/Loader";
 import { first400Chars } from "../utill";
-import CharaterCard from "../Components/CharaterCard";
+import VoiceActorCard from "../Components/VoiceActorCard"
 
 const EachCharacter = () => {
   const [searchParams] = useSearchParams();
@@ -72,14 +72,16 @@ const EachCharacter = () => {
           <div className="font-sans bg-black mb-[10px] font-[700]">
             <h1 className="text-[28px]">{response && response.name}</h1>
             <h1 className="text-[28px]">{response && response.name_kanji}</h1>
-            <div className="flex flex-row mb-[10px] gap-[10px] text-[18px]">
-              NickNames :
-              {response &&
-                response.nicknames &&
-                response.nicknames.map((each, index) => {
-                  return <h1 key={index}>{each}</h1>;
-                })}
-            </div>
+            {response?.nicknames?.length != 0 && (
+              <div className="flex flex-row mb-[10px] gap-[10px] text-[18px]">
+                NickNames :
+                {response &&
+                  response.nicknames &&
+                  response.nicknames.map((each, index) => {
+                    return <h1 key={index}>{each}</h1>;
+                  })}
+              </div>
+            )}
 
             <div className="bg-black w-full">
               <div className="w-[700px] font-mono font-[900]">
@@ -106,13 +108,9 @@ const EachCharacter = () => {
             {voiceActors &&
               voiceActors.map((each, index) => {
                 return (
-                  <CharaterCard
+                  <VoiceActorCard
                     key={index}
-                    name={
-                      each &&
-                      each.person &&
-                      each.person.name
-                    }
+                    name={each && each.person && each.person.name}
                     imgUrl={
                       each &&
                       each.person &&
@@ -138,11 +136,7 @@ const EachCharacter = () => {
                   return (
                     <img
                       key={index}
-                      src={
-                        each &&
-                        each.jpg &&
-                        each.jpg.image_url
-                      }
+                      src={each && each.jpg && each.jpg.image_url}
                       className="h-[350px] w-[220px]"
                       alt="home"
                     />
