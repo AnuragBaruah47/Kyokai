@@ -1,0 +1,75 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+
+const useGetAllAnime = (pageNumber = 1, Limit = 25) => {
+  return useQuery({
+    queryKey: ["seasons", pageNumber, Limit],
+    enabled: !!pageNumber,
+    staleTime: 1000 * 60 * 10,
+    gcTime: 1000 * 60 * 10,
+    keepPreviousData: true,
+    refetchOnWindowFocus: false,
+    retry: 2,
+    queryFn: async () => {
+      const response = await axios.get(
+        `https://api.jikan.moe/v4/seasons/now?limit=${Limit}&page=${pageNumber}`
+      );
+      return response.data;
+    },
+    select: (data) => data.data,
+  });
+};
+const useGetEachAnime = (id) => {
+  return useQuery({
+    queryKey: ["each-anime", id],
+    queryFn: async () => {
+      const response = await axios.get(`https://api.jikan.moe/v4/anime/${id}`);
+      return response.data;
+    },
+    select: (data) => data.data,
+    staleTime: 1000 * 60 * 10,
+    gcTime: 1000 * 60 * 10,
+    refetchOnWindowFocus: false,
+    retry: 2,
+    enabled: !!id,
+  });
+};
+
+const useGetTopAnime = (limit = 5, page = 1) => {
+  return useQuery({
+    queryKey: ["top-anime", limit, page],
+    queryFn: async () => {
+      const res = await axios.get(
+        `https://api.jikan.moe/v4/top/anime?limit=${limit}&page=${page}`
+      );
+      return res.data;
+    },
+    select: (data) => data.data,
+    staleTime: 1000 * 60 * 5,
+    refetchOnWindowFocus: false,
+    gcTime: 1000 * 60 * 5,
+    retry: 2,
+    enabled: page > 0,
+  });
+};
+const useGetUpcommingAnime = (page = 1) => {
+  return useQuery({
+    queryKey: ["upcomming-anime", page],
+    queryFn: async () => {
+      const res = await axios.get(
+        `https://api.jikan.moe/v4/seasons/upcoming?limit=25&page=${page}`
+      );
+      return res.data;
+    },
+    select: (data) => data.data,
+    staleTime: 1000 * 60 * 10,
+    gcTime: 1000 * 60 * 10,
+    refetchOnWindowFocus: false,
+    enabled: page > 0,
+    retry: 2,
+  });
+};
+
+
+
+export { useGetAllAnime, useGetEachAnime, useGetTopAnime,useGetUpcommingAnime };
