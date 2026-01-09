@@ -12,7 +12,7 @@ const useGetAllAnime = (pageNumber = 1, Limit = 25) => {
     retry: 2,
     queryFn: async () => {
       const response = await axios.get(
-        `https://api.jikan.moe/v4/seasons/now?limit=${Limit}&page=${pageNumber}`
+        `https://api.jikan.moe/v4/anime?limit=${Limit}&page=${pageNumber}`
       );
       return response.data;
     },
@@ -70,6 +70,47 @@ const useGetUpcommingAnime = (page = 1) => {
   });
 };
 
+const useGetAnimeBySearch = (keyword) => {
+  return useQuery({
+    queryKey: ["AnimeBySearch", keyword],
+    queryFn: async () => {
+      const res = await axios.get(
+        `https://api.jikan.moe/v4/anime?q=${keyword}&limit=3`
+      );
+      return res.data;
+    },
+    select: (data) => data.data,
+    refetchOnWindowFocus: false,
+    retry: 2,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 5,
+    enabled: !!keyword,
+  });
+};
 
+const useGetAllAnimeBySearch = (keyword, page) => {
+  return useQuery({
+    queryKey: ["AllAnimeBySearch", keyword, page],
+    queryFn: async () => {
+      const res = await axios.get(
+        `https://api.jikan.moe/v4/anime?q=${keyword}&page=${page}`
+      );
+      return res.data;
+    },
+    select: (data) => data.data,
+    staleTime: 1000 * 60,
+    gcTime: 1000 * 60,
+    retry: 2,
+    enabled: page > 1 && keyword !== " ",
+    refetchOnWindowFocus: false,
+  });
+};
 
-export { useGetAllAnime, useGetEachAnime, useGetTopAnime,useGetUpcommingAnime };
+export {
+  useGetAllAnime,
+  useGetEachAnime,
+  useGetTopAnime,
+  useGetUpcommingAnime,
+  useGetAllAnimeBySearch,
+  useGetAnimeBySearch,
+};

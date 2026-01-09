@@ -9,6 +9,7 @@ import RootLayout from "./RootLayout/RootLayout";
 import Home from "./Pages/Home";
 import AllAnime from "./Pages/AllAnime";
 import EachAnime from "./Pages/EachAnime";
+import SearchComponent from "./Components/SearchComponent";
 const App = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -16,6 +17,7 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path="anime" element={<AllAnime />} />
         <Route path="anime/:id" element={<EachAnime />} />
+        <Route path="search" element={<SearchComponent/>} />
       </Route>
     )
   );
