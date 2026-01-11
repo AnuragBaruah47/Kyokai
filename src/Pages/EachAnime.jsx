@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useAnimeCharacters, useGetEachAnime } from "../Queries/Hooks";
 import Loader from "../Components/Loader";
 import { first300Chars } from "../Utils";
+import CharacterCard from "../Components/CharacterCard";
 
 const EachAnime = () => {
   const { id } = useParams();
@@ -22,16 +23,11 @@ const EachAnime = () => {
     return <Loader />;
   }
 
-  console.log(data2);
-
   const setValueOfMore = () => {
     setMore((prev) => !prev);
   };
 
-  if(data2){
-    console.log(data2.filter((e)=> e.role === "Main"));
-    
-  }
+
 
   return (
     <div className="min-h-screen w-screen flex relative top-45 justify-center">
@@ -41,9 +37,10 @@ const EachAnime = () => {
             <div className="">
               <img
                 src={data.images.webp.large_image_url}
-                className="max-h-96 h-96 border-2  shadow-[5px_5px_0_#000]"
+                className="max-h-96 h-96 border-2 shadow-[5px_5px_0_#000]"
                 alt="anime"
               />
+             
             </div>
           )}
           <div className="text-5xl mb-12 w-3xl mx-6 max-w-3xl font-semibold ">
@@ -121,11 +118,15 @@ const EachAnime = () => {
             </div>
           </div>
 
-          <div className="border-2 mb-12 shadow-[5px_5px_0_rgba(0,0,0,1)] w-xl max-w-xl">
+          <div className="border-2 h-fit mb-12 shadow-[5px_5px_0_rgba(0,0,0,1)] w-md max-w-xl">
+            <h1 className="border-2 w-full flex justify-center text-3xl font-semibold shadow-[5px_5px_0_rgba(0,0,0,1)]">
+              Faces of the show
+            </h1>
             {data2
               .filter((e) => e.role === "Main")
               .map((e) => (
-                <div key={e.id}>{e.character.name}</div>
+                <div className="flex flex-col" key={e.character.name}>
+                  <CharacterCard name={e.character.name} images={e.character.images.webp.image_url} /></div>
               ))}
           </div>
         </div>

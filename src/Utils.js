@@ -18,4 +18,16 @@ export const first300Chars = (text) => {
   if (!text) return "";
   return text.slice(0, 400);
 };
+export const first200Chars = (text) => {
+  if (!text) return "";
+  return text.slice(0, 50);
+};
+export const TrunNameChars = (text) => {
+  if (!text) return "";
+  return text.slice(0, 15);
+};
+export const TrunNameChars2 = (text) => {
+  if (!text) return "";
+  return text.slice(0, 45);
+};
 export default useDebounce;

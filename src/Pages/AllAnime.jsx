@@ -63,7 +63,7 @@ const AllAnime = () => {
         {page > 1 && (
           <button
             onClick={prevPage}
-            className=" disabled:shadow-none cursor-pointer border-2 active:shadow-none transition-all ease-in-out  shadow-[5px_5px_0_#000] font-semibold px-12 py-3 rounded-md bg-white"
+            className="  cursor-pointer border-2 active:shadow-none transition-all ease-in-out  shadow-[5px_5px_0_#000] font-semibold px-12 py-3 rounded-md bg-white"
           >
             Prev
           </button>
