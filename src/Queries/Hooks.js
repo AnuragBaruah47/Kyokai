@@ -106,6 +106,19 @@ const useGetAllAnimeBySearch = (keyword, page) => {
   });
 };
 
+const useAnimeCharacters = (id) =>
+  useQuery({
+    queryKey: ["anime-characters",id],
+    queryFn: async () =>
+      (await axios.get(`https://api.jikan.moe/v4/anime/${id}/characters`)).data,
+    select: (res) => res.data,
+    staleTime: 60_000,
+    gcTime: 60_000,
+    retry: 2,
+    enabled: !!id,
+    refetchOnWindowFocus: false,
+  });
+
 export {
   useGetAllAnime,
   useGetEachAnime,
@@ -113,4 +126,5 @@ export {
   useGetUpcommingAnime,
   useGetAllAnimeBySearch,
   useGetAnimeBySearch,
+  useAnimeCharacters
 };

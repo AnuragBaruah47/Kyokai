@@ -14,4 +14,8 @@ const useDebounce = (value, delay = 600) => {
   return debouncedValue;
 };
 
-export default useDebounce
+export const first300Chars = (text) => {
+  if (!text) return "";
+  return text.slice(0, 400);
+};
+export default useDebounce;

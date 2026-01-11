@@ -24,7 +24,7 @@ const AnimeCard = ({ imageUrl, title, type, status, ratings, popularity }) => {
     <div
       onMouseEnter={onHoverEnter}
       onMouseLeave={onHoverExit}
-      className="h-98 overflow-clip bg-contain cursor-pointer bg-center items-center flex justify-center bg-no-repeat border-2 shadow-[5px_5px_0_#000] bg-white w-xs"
+      className="h-98 overflow-clip bg-contain cursor-pointer bg-center items-center flex justify-center bg-no-repeat border-2 shadow-[5px_5px_0_#000] bg-[#88b3f8] w-xs"
     >
       <div className="mx-4 font-semibold relative bottom-20 flex mt-30 flex-col gap-2 text-xl">
         <h1>{title}</h1>
