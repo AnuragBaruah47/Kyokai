@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useGetAllAnimeBySearch } from "../Queries/Hooks";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Loader from "../Components/Loader";
 import AnimeCard from "../Components/AnimeCard";
 
@@ -13,6 +13,7 @@ const AllSearchPage = () => {
     keyword,
     page
   );
+
 
   useEffect(() => {
     setPage(1);
@@ -41,7 +42,7 @@ const AllSearchPage = () => {
         <div className="p-5 grid justify-center gap-4 grid-cols-[repeat(5,290px)] bg-white h-fit relative top-40 border-2 w-auto shadow-[5px_5px_0_rgba(0,0,0,1)]">
           {data.data.map((each) => {
             return (
-              <Link to={`${each.mal_id}`} key={each.title}>
+        <Link to={`/anime/${each.mal_id}`} key={each.title}>
                 <AnimeCard
                   imageUrl={each?.images?.webp?.large_image_url}
                   title={each.title}
