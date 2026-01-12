@@ -12,7 +12,7 @@ import AnimeCard from "../Components/AnimeCard";
 
 const AllAnime = () => {
   const [page, setPage] = useState(1);
-  const navigate = useNavigation();
+
 
   const {
     data: allAnime,
@@ -20,12 +20,7 @@ const AllAnime = () => {
     isError,
     error,
   } = useGetAllAnime(page, 25);
-  const {
-    data: top5Animes,
-    isLoading: topAnimeLoading,
-    isError: topAnimeIsError,
-    error: topAnimeError,
-  } = useGetTopAnime(5, 1);
+
   const nextPage = () => {
     setPage((prev) => prev + 1);
   };
@@ -41,7 +36,7 @@ const AllAnime = () => {
 
   return (
     <div className="relative w-full top-40 flex flex-col justify-center">
-      <div className="grid w-full gap-2 justify-center p-4 grid-cols-[repeat(5,330px)]">
+      <div className="grid w-full gap-2 justify-center p-4 grid-cols-[repeat(5,290px)]">
         {allAnime?.map((each, index) => {
           return (
             <Link key={index} to={`${each.mal_id}`}>

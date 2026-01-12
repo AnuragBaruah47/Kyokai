@@ -15,13 +15,11 @@ import Loader from "./Loader";
 import SearchComponent from "./SearchComponent";
 
 const Navbar = () => {
-
   const [search, setSearch] = React.useState(false);
   const [keyword, setKeyWord] = useState("");
   const debouncedData = useDebounce(keyword, 600);
   const { data, isLoading, isError, error } =
     useGetAnimeBySearch(debouncedData);
-  console.log(data);
 
   const elements = [
     { label: "Home", icon: IoHomeOutline, path: "/" },
@@ -32,8 +30,8 @@ const Navbar = () => {
 
   const toggleSearch = () => {
     setSearch((prev) => !prev);
-    if(search === false){
-      setKeyWord("")
+    if (search === false) {
+      setKeyWord("");
     }
   };
 
@@ -75,19 +73,38 @@ const Navbar = () => {
               onChange={(e) => setKeyWord(e.target.value)}
               className="flex relative bg-white border-2 shadow-[8px_8px_0_#000] rounded-md h-15 border-black max-w-3xl w-full justify-between items-center gap-5 px-4"
             />
+
             <IoMdClose
               onClick={toggleSearch}
               className="text-3xl cursor-pointer relative right-10 top-3"
             />
           </div>
           <div className="relative top-3 right-3">
-            {keyword && data?.map((each)=>{
-              return <Link onClick={toggleSearch} to={`anime/${each.mal_id}`}>
-                <SearchComponent animePhoto={each?.images?.webp?.large_image_url}
-                animeName={each.title_english? each.title_english : each.title_japanese}
-                animeSynopsis={each.synopsis}/>
-              </Link>
-            })}
+            {keyword &&
+              data?.map((each) => {
+                return (
+                  <Link onClick={toggleSearch} to={`anime/${each.mal_id}`}>
+                    <SearchComponent
+                      animePhoto={each?.images?.webp?.large_image_url}
+                      animeName={
+                        each.title_english
+                          ? each.title_english
+                          : each.title_japanese
+                      }
+                      animeSynopsis={each.synopsis}
+                    />
+                  </Link>
+                );
+              })}
+            {keyword && (
+              <div className="w-full flex justify-center">
+                <Link onClick={toggleSearch} to={`viewall?q=${debouncedData}`}>
+                  <button className="w-3xl flex justify-center cursor-pointer border-2 active:shadow-none transition-all ease-in-out  shadow-[5px_5px_0_#000] font-semibold px-2 py-2 rounded-md bg-white">
+                    View all results
+                  </button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       )}

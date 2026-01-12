@@ -30,4 +30,12 @@ export const TrunNameChars2 = (text) => {
   if (!text) return "";
   return text.slice(0, 45);
 };
+
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs) {
+  return twMerge(clsx(inputs));
+}
+
 export default useDebounce;

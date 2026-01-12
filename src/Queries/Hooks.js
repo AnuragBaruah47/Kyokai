@@ -88,27 +88,29 @@ const useGetAnimeBySearch = (keyword) => {
   });
 };
 
-const useGetAllAnimeBySearch = (keyword, page) => {
+const useGetAllAnimeBySearch = (keyword, page = 1) => {
+  const normalizedKeyword = keyword?.trim();
+
   return useQuery({
-    queryKey: ["AllAnimeBySearch", keyword, page],
+    queryKey: ["AllAnimeBySearch", normalizedKeyword, page],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://api.jikan.moe/v4/anime?q=${keyword}&page=${page}`
-      );
+      const res = await axios.get("https://api.jikan.moe/v4/anime", {
+        params: { q: normalizedKeyword, page, limit: 25 },
+      });
       return res.data;
     },
-    select: (data) => data.data,
-    staleTime: 1000 * 60,
-    gcTime: 1000 * 60,
+    staleTime: 60_000,
+    gcTime: 5 * 60_000,
     retry: 2,
-    enabled: page > 1 && keyword !== " ",
+    enabled: page >= 1 && Boolean(normalizedKeyword),
     refetchOnWindowFocus: false,
   });
 };
 
+
 const useAnimeCharacters = (id) =>
   useQuery({
-    queryKey: ["anime-characters",id],
+    queryKey: ["anime-characters", id],
     queryFn: async () =>
       (await axios.get(`https://api.jikan.moe/v4/anime/${id}/characters`)).data,
     select: (res) => res.data,
@@ -126,5 +128,5 @@ export {
   useGetUpcommingAnime,
   useGetAllAnimeBySearch,
   useGetAnimeBySearch,
-  useAnimeCharacters
+  useAnimeCharacters,
 };
