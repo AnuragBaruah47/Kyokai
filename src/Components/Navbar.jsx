@@ -24,7 +24,7 @@ const Navbar = () => {
   const elements = [
     { label: "Home", icon: IoHomeOutline, path: "/" },
     { label: "Bookmarks", icon: CiBookmark, path: "/Bookmarks" },
-    { label: "Upcoming Anime", icon: SlCalender, path: "/UpcomingAnime" },
+    { label: "Forums", icon: SlCalender, path: "/UpcomingAnime" },
     { label: "Search", icon: IoMdSearch }, // No path here
   ];
 
@@ -39,9 +39,9 @@ const Navbar = () => {
     <div>
       {search === false ? (
         <nav className="flex justify-center w-full">
-          <ul className="flex bg-white border-2 shadow-[8px_8px_0_#000] rounded-md border-black max-w-3xl w-full justify-between items-center gap-5 px-4">
+          <ul className="flex bg-white border-2 shadow-[8px_8px_0_#000] rounded-md border-black w-3xl justify-between items-center gap-5 h-16 px-4">
             {elements.map((e) => {
-              // Define common styles to keep code DRY (Don't Repeat Yourself)
+
               const contentStyles =
                 "text-xl flex font-semibold justify-center items-center gap-2 cursor-pointer";
 
@@ -68,15 +68,31 @@ const Navbar = () => {
         </nav>
       ) : (
         <div>
-          <div className="w-full flex justify-center">
+          <div className="relative w-full flex justify-center">
             <input
               onChange={(e) => setKeyWord(e.target.value)}
-              className="flex relative bg-white border-2 shadow-[8px_8px_0_#000] rounded-md h-15 border-black max-w-3xl w-full justify-between items-center gap-5 px-4"
+              className="
+      w-3xl
+      h-16
+      bg-white
+      border-2 border-black
+      shadow-[8px_8px_0_#000]
+      rounded-md
+      px-4
+      pr-12
+    "
             />
 
             <IoMdClose
               onClick={toggleSearch}
-              className="text-3xl cursor-pointer relative right-10 top-3"
+              className="
+      absolute
+      right-4
+      top-1/2
+      -translate-y-1/2
+      text-2xl
+      cursor-pointer
+    "
             />
           </div>
           <div className="relative top-3 right-3">

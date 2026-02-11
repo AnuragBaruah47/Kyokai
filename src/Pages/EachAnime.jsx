@@ -27,8 +27,6 @@ const EachAnime = () => {
     setMore((prev) => !prev);
   };
 
-
-
   return (
     <div className="min-h-screen w-screen flex relative top-45 justify-center">
       <div className="h-max flex justify-center w-[90%] border-2 shadow-[10px_10px_0_#000] rounded-md bg-white square">
@@ -37,10 +35,9 @@ const EachAnime = () => {
             <div className="">
               <img
                 src={data.images.webp.large_image_url}
-                className="max-h-96 h-96 border-2 shadow-[5px_5px_0_#000]"
+                className="max-h-96 h-96 w-70 border-2 shadow-[5px_5px_0_#000]"
                 alt="anime"
               />
-             
             </div>
           )}
           <div className="text-5xl mb-12 w-3xl mx-6 max-w-3xl font-semibold ">
@@ -118,17 +115,23 @@ const EachAnime = () => {
             </div>
           </div>
 
-          <div className="border-2 h-fit mb-12 shadow-[5px_5px_0_rgba(0,0,0,1)] w-md max-w-xl">
-            <h1 className="border-2 w-full flex justify-center text-3xl font-semibold shadow-[5px_5px_0_rgba(0,0,0,1)]">
-              Faces of the show
-            </h1>
-            {data2
-              .filter((e) => e.role === "Main")
-              .map((e) => (
-                <div className="flex flex-col" key={e.character.name}>
-                  <CharacterCard name={e.character.name} images={e.character.images.webp.image_url} /></div>
-              ))}
-          </div>
+          {data2 && (
+            <div className="border-2 h-fit mb-12 shadow-[5px_5px_0_rgba(0,0,0,1)] w-md max-w-xl">
+              <h1 className="border-2 w-full flex justify-center text-3xl font-semibold shadow-[5px_5px_0_rgba(0,0,0,1)]">
+                Faces of the show
+              </h1>
+              {data2
+                .filter((e) => e.role === "Main")
+                .map((e) => (
+                  <div className="flex flex-col" key={e.character.name}>
+                    <CharacterCard
+                      name={e.character.name}
+                      images={e.character.images.webp.image_url}
+                    />
+                  </div>
+                ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

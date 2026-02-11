@@ -107,7 +107,6 @@ const useGetAllAnimeBySearch = (keyword, page = 1) => {
   });
 };
 
-
 const useAnimeCharacters = (id) =>
   useQuery({
     queryKey: ["anime-characters", id],
