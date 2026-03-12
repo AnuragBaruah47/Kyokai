@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import {
   useGetAllAnime,
-  useGetEachAnime,
-  useGetTopAnime,
 } from "../Queries/Hooks";
 import { useNavigation } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -36,7 +34,7 @@ const AllAnime = () => {
 
   return (
     <div className="relative w-full top-40 flex flex-col justify-center">
-      <div className="grid w-full gap-2 justify-center p-4 grid-cols-[repeat(5,290px)]">
+      <div className="grid w-full gap-2  justify-center p-4 grid-cols-[repeat(5,290px)]">
         {allAnime?.map((each, index) => {
           return (
             <Link key={index} to={`${each.mal_id}`}>

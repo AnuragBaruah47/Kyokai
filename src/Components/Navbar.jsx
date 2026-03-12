@@ -41,7 +41,6 @@ const Navbar = () => {
         <nav className="flex justify-center w-full">
           <ul className="flex bg-white border-2 shadow-[8px_8px_0_#000] rounded-md border-black w-3xl justify-between items-center gap-5 h-16 px-4">
             {elements.map((e) => {
-
               const contentStyles =
                 "text-xl flex font-semibold justify-center items-center gap-2 cursor-pointer";
 

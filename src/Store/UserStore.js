@@ -8,7 +8,6 @@ export const useUserStore = create((set) => ({
   error: null,
   getTheLoginUser: async () => {
     set({ isLoading: true, error: null });
-
     try {
       const session = await account.get();
 

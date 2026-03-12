@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { account, logOut, signUp } from "../lib/Functions";
 import { useNavigate } from "react-router-dom";
-import CheckLoader from "../Components/Tick";
 import { useEffect, useState } from "react";
+import Loader from "../Components/Loader";
+import { useUserStore } from "../Store/UserStore";
 
 export default function SignUp() {
   const [loader, setLoader] = useState(false);
-  const [user, setuser] = useState({});
   const navigate = useNavigate();
   const {
     register,
@@ -22,27 +22,41 @@ export default function SignUp() {
     },
   });
 
+  const user = useUserStore((s)=>s.user)
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user]);
+  if (loader) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
+  }
+
   const onSubmit = async (data) => {
     setLoader(true);
     await signUp(data);
     setLoader(false);
+
     navigate("/");
+    window.location.reload();
   };
 
-  useEffect(()=>{
- if (user) {
-    navigate("/");
-  }
-  },[user])
- 
-
   return (
-    <div className="flex h-screen w-screen justify-center items-center">
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <div className="form-group">
-          <label htmlFor="userName">Username</label>
-
+    <div className="flex flex-col h-screen  w-screen justify-center items-center">
+      <form
+        className="h-100 gap-3 flex font-semibold justify-center items-center flex-col w-100 rounded-md border-2 shadow-[5px_5px_0_#000] bg-white"
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+      >
+        <div className="font-semibold w-full flex items-center flex-col h-15">
           <input
+            placeholder="Enter Your Username"
+            className="p-2 w-60 border-2 rounded-md"
             id="userName"
             type="text"
             autoComplete="username"
@@ -60,10 +74,10 @@ export default function SignUp() {
           )}
         </div>
 
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-
+        <div className="font-semibold w-full flex items-center flex-col h-15">
           <input
+            placeholder="Enter Your Email"
+            className="p-2 w-60 border-2 rounded-md"
             id="email"
             type="email"
             autoComplete="email"
@@ -79,10 +93,10 @@ export default function SignUp() {
           {errors.email && <p className="error">{errors.email.message}</p>}
         </div>
 
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-
+        <div className="font-semibold w-full flex items-center flex-col h-15">
           <input
+            placeholder="Enter Your Password"
+            className="p-2 w-60 border-2 rounded-md"
             id="password"
             type="password"
             autoComplete="current-password"
@@ -100,14 +114,21 @@ export default function SignUp() {
           )}
         </div>
 
-        <button type="submit" disabled={isSubmitting}>
+        <button
+          type="submit "
+          className="border-2 shadow-[5px_5px_0_#000] h-10 active:shadow-none w-40 rounded-md"
+          disabled={isSubmitting}
+        >
           submit
         </button>
       </form>
-      <div>
-        already have an account{" "}
-        <button onClick={() => navigate("/signin")} className="cursor-pointer">
-          sign in
+      <div className="translate-y-8 font-semibold">
+        Already have an account ?
+        <button
+          onClick={() => navigate("/signin")}
+          className="cursor-pointer ml-1 font-extrabold "
+        >
+          Sign In
         </button>
       </div>
     </div>

@@ -3,12 +3,11 @@ import { logIn } from "../lib/Functions";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useUserStore } from "../Store/UserStore";
+import Loader from "../Components/Loader";
 
 export default function SignIn() {
+  const [loader, setLoader] = React.useState(false);
   const user = useUserStore((state) => state.user);
-  const logOut = useUserStore((s) => s.logOutTheUser);
-  const getSession = useUserStore((s) => s.getTheLoginUser);
-
   const {
     register,
     handleSubmit,
@@ -22,26 +21,41 @@ export default function SignIn() {
     },
   });
   const navigate = useNavigate();
+    useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user]);
 
   const onSubmit = async (data) => {
+    setLoader(true);
     await logIn(data);
-    navigate("/")
+    setLoader(false);
+    navigate("/");
+      window.location.reload();
   };
 
-  useEffect(()=>{
- if (user) {
-    navigate("/");
+
+
+
+    if (loader) {
+    return (
+      <div>
+        <Loader />
+      </div>
+    );
   }
-  },[user])
- 
-
   return (
-    <div className="flex h-screen w-screen justify-center items-center">
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-
+    <div className="flex flex-col h-screen w-screen justify-center items-center">
+      <form
+        className="h-85 gap-3 flex font-semibold justify-center items-center flex-col w-90  rounded-md border-2 shadow-[5px_5px_0_#000] bg-white"
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+      >
+        <div className="font-semibold w-full flex items-center flex-col h-15">
           <input
+            className="p-2 w-60 border-2 rounded-md"
+            placeholder="Enter Your Email"
             id="email"
             type="email"
             autoComplete="email"
@@ -57,10 +71,10 @@ export default function SignIn() {
           {errors.email && <p className="error">{errors.email.message}</p>}
         </div>
 
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-
+        <div className="font-semibold w-full flex items-center flex-col h-15">
           <input
+            placeholder="Enter Your Password"
+            className="p-2 border-2 w-60 rounded-md"
             id="password"
             type="password"
             autoComplete="current-password"
@@ -78,17 +92,25 @@ export default function SignIn() {
           )}
         </div>
 
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Signing in..." : "Sign In"}
-        </button>
+        <div className="h-15 w-full flex justify-center">
+          <button
+            className="border-2 shadow-[5px_5px_0_#000] h-10 active:shadow-none w-40 rounded-md"
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Signing in..." : "Sign In"}
+          </button>
+        </div>
       </form>
-      <div>
-        dont have an account?
-        <button onClick={() => navigate("/signup")} className="cursor-pointer">
-          create one
+      <div className="translate-y-5 font-semibold">
+        Dont have an account?
+        <button
+          onClick={() => navigate("/signup")}
+          className="cursor-pointer font-extrabold ml-1"
+        >
+          Create One
         </button>
       </div>
-      {user && <button onClick={logOut}>Logout</button>}
     </div>
   );
 }

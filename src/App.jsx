@@ -18,23 +18,27 @@ import { useUserStore } from "./Store/UserStore";
 import ProtectedRoute from "./Components/ProtectedRoutes";
 const App = () => {
   const getSession = useUserStore((s) => s.getTheLoginUser);
+  const user = useUserStore((s) => s.user);
 
   React.useEffect(() => {
     getSession();
   }, [getSession]);
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<RootLayout />}>
-        <Route index element={<Home />} />
-        <Route path="anime" element={<AllAnime />} />
-        <Route path="anime/:id" element={<EachAnime />} />
-        <Route element={<ProtectedRoute />}>
-          <Route path="bookmarks" element={<Bookmarks />} />
-        </Route>
-        <Route path="signup" element={<SignUp />} />
-        <Route path="signin" element={<SignIn />} />
-        <Route path="viewall" element={<AllSearchPage />} />
-      </Route>,
+<Route>
+  <Route path="/" element={<RootLayout />}>
+    <Route index element={user ? <AllAnime /> : <Home />} />
+    <Route path=":id" element={<EachAnime />} />
+    <Route element={<ProtectedRoute />}>
+      <Route path="bookmarks" element={<Bookmarks />} />
+    </Route>
+    <Route path="viewall" element={<AllSearchPage />} />
+  </Route>
+
+  <Route path="/signup" element={<SignUp />} />
+  <Route path="/signin" element={<SignIn />} />
+</Route>
+
     ),
   );
   return <RouterProvider router={router} />;

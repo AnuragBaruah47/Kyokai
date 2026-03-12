@@ -1,5 +1,4 @@
 import React from 'react'
-import FlashCard from '../Components/FlashCard'
 
 
 const Home = () => {
